@@ -63,6 +63,10 @@ namespace TaskWpf.Windows
         private void RenderAllTasks()
         {
             TaskListView.Items.Clear();
+            if (allTasks == null)
+            {
+                return;
+            }
             foreach (var taskUnit in allTasks)
             {
                 var newListViewItem = new ListViewItem()
@@ -173,8 +177,8 @@ namespace TaskWpf.Windows
             UserSettings.Default.JwtToken = string.Empty;
             UserSettings.Default.Save();
 
-            new LoginWindow().Show();
             Window mainWindow = Window.GetWindow(this);
+            new LoginWindow().Show();
             mainWindow.Close();
         }
     }
